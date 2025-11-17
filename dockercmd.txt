@@ -1,0 +1,16 @@
+git --version
+docker --version
+git init
+git add .
+git commit -m "Initial commit - travel site with Dockerfile"
+git remote add origin https://github.com/vaishnavibjadhav/travel.git
+git branch -M main
+git push -u origin main
+docker pull nginx:alpine
+docker build -t vaishnavi/travel_site:1.0 .
+docker run -d --name travel-container -p 8080:80 vaishnavi/travel_site:1.0
+
+docker rm -f travel-container
+docker run -d -p 9090:80 --name travel-container travel_site
+Go To
+http://localhost:9090/
